@@ -1,0 +1,5 @@
+whisper
+pydub
+pyannote.audio
+streamlit
+numpy
