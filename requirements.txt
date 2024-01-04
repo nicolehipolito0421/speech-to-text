@@ -1,4 +1,5 @@
 openai-whisper @ git+https://github.com/openai/whisper.git
+ffmpeg==1.4
 pydub
 pyannote.audio
 streamlit
