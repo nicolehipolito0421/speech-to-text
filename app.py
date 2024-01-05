@@ -1,5 +1,7 @@
+import pathlib
+import sys
+sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
 import os
-import logging
 from pyannote.audio import Pipeline
 from pydub import AudioSegment
 import streamlit as st
@@ -9,9 +11,6 @@ import random
 import string
 import datetime
 import tempfile
-import concurrent.futures
-logging.basicConfig(filename='../convert.log', level=logging.INFO,
-                    format='%(asctime)s:%(levelname)s:%(message)s')
 class Transcribe:
     def __init__(self,source):
         self.source = source
@@ -74,7 +73,7 @@ class Transcribe:
           del result
           del tr
         st.success(f'✅ Transcription Successful: {file}')
-        logging.info(f'{file} is successfully transcribed.')
+
 def app():
     st.title('Speech to text Converter')
     uploaded_file = st.file_uploader("Upload an audio file", type=["mp3",'wav'], accept_multiple_files=True)

@@ -1,8 +1,26 @@
-FROM python:3.11.5
-WORKDIR /app
-COPY requirements.txt ./requirements.txt
-RUN pip3 install -r requirements.txt
+FROM python:3.11-alpine as base
+
+
+
+RUN mkdir /svc COPY . /svc
+
+WORKDIR /svc
+
+
+
+RUN pip install wheel && pip wheel . --wheel-dir=/svc/wheels
+
+
+
+FROM python:3.11-alpine
+
 EXPOSE 8080
-COPY . /app
-LABEL authors="NicoleHipolito"
+
+COPY --from=base /svc /svc
+
+WORKDIR /svc
+
+RUN pip install --no-index --find-links=/shadow_reporting/wheels -r requirements.txt
+
+
 CMD streamlit run --server.port 8080 --server.enableCORS false app.py
