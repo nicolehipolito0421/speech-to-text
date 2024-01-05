@@ -18,6 +18,8 @@ EXPOSE 8080
 
 COPY --from=base /svc /svc
 
+COPY requirements.txt /svc/requirements.txt
+
 WORKDIR /svc
 
 RUN pip install --no-index --find-links=/shadow_reporting/wheels -r requirements.txt
