@@ -1,6 +1,7 @@
 import pathlib
 import sys
 sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
+import ffprobe
 import os
 from pyannote.audio import Pipeline
 from pydub import AudioSegment
