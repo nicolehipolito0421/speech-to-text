@@ -17,13 +17,13 @@ class Transcribe:
         self.source = source
         self.folder ='transcripts'+'-'+str(datetime.datetime.today().date())+'-'+''.join(random.choice(string.digits) for i in range(5))
         os.makedirs(self.folder,exist_ok=True)
-    def load_pipeline(self):
+    def load_pipeline(self,API_KEY= None):
         '''
         Load the diarization pipeline
         '''
         self.pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1",
-            use_auth_token='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', )
+            use_auth_token=API_KEY, )
     def load_model (self,name):
         self.model = whisper.load_model(name)
 
